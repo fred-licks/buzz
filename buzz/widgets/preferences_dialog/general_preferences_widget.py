@@ -66,7 +66,7 @@ class GeneralPreferencesWidget(QWidget):
 
         self.ui_language_combo_box = QComboBox(self)
         self.ui_language_combo_box.addItems(ui_locales.values())
-        system_locale = self.settings.value(Settings.Key.UI_LOCALE, QLocale().name())
+        system_locale = self.settings.value(Settings.Key.UI_LOCALE, "pt_BR")
         locale_index = 0
         for i, (code, language) in enumerate(ui_locales.items()):
             if code == system_locale:

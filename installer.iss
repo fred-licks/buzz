@@ -45,7 +45,7 @@ Name: "{autodesktop}\{#AppName}"; Filename: "{app}\{#AppExeName}"; Tasks: deskto
 Filename: "{app}\{#AppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(AppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
 [Registry]
-Root: HKCU; Subkey: "{#AppRegKey}"
+Root: HKCU; Subkey: "{#AppRegKey}"; ValueType: string; ValueName: "ui-locale"; ValueData: "pt_BR"
 
 [Code]
 procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);

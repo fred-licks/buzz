@@ -13,7 +13,7 @@ gettext.bindtextdomain("buzz", locale_dir)
 settings = Settings()
 
 languages = [
-    settings.value(settings.Key.UI_LOCALE, QLocale().name())
+    settings.value(settings.Key.UI_LOCALE, "pt_BR")
 ]
 
 translate = gettext.translation(
