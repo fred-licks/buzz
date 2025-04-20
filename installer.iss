@@ -3,6 +3,7 @@
 
 #define AppName "Buzz PCRS"
 #define AppExeName "Buzz PCRS.exe"
+#define AppPublisher "Dinova/DTIP/PCRS"
 #define AppIconPath "assets\buzz_pcrs.ico"
 #define AppSourcePath "dist\Buzz\*"
 #define OutputDir "dist"
