@@ -82,9 +82,9 @@ exe = EXE(
     pyz,
     a.scripts,
     options,
-    icon="./assets/buzz.ico",
+    icon="./assets/buzz_pcrs.ico",
     exclude_binaries=True,
-    name="Buzz",
+    name="Buzz PCRS",
     debug=DEBUG,
     bootloader_ignore_signals=False,
     strip=False,
@@ -109,7 +109,7 @@ coll = COLLECT(
 app = BUNDLE(
     coll,
     name="Buzz.app",
-    icon="./assets/buzz.icns",
+    icon="./assets/buzz_pcrs.icns",
     bundle_identifier="com.chidiwilliams.buzz",
     version=VERSION,
     info_plist={
