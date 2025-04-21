@@ -90,7 +90,7 @@ class VisibilityIcon(Icon):
 
 
 BUZZ_ICON_PATH = get_path("assets/buzz_pcrs.ico")
-BUZZ_LARGE_ICON_PATH = get_path("assets/buzz-icon-1024.png")
+BUZZ_LARGE_ICON_PATH = get_path("assets/buzz-icon-1024_pcrs.png")
 
 INFO_ICON_PATH = get_path("assets/info-circle.svg")
 RECORD_ICON_PATH = get_path("assets/mic_FILL0_wght700_GRAD0_opsz48.svg")
