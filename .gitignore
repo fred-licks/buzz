@@ -33,3 +33,5 @@ benchmarks.json
 /wheelhouse/
 /.flatpak-builder
 /repo
+
+/_external dependencies/

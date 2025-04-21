@@ -1,0 +1,21 @@
+Instalação de dependências externas:
+
+choco install ffmpeg
+
+
+
+Antes de executar o Inno Setup, você precisa compilar o Buzz para criar os arquivos na pasta dist/Buzz/. Aqui está a sequência correta de passos:
+
+Primeiro, compile o aplicativo Buzz:
+poetry shell
+make translation_mo
+poetry install
+cp -r .\dll_backup\ .\buzz\
+poetry build
+python -m buzz
+
+Isso criará os arquivos necessários na pasta dist/Buzz/
+
+Depois, compile o instalador com o Inno Setup:
+
+iscc installer.iss

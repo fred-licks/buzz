@@ -8,6 +8,7 @@
 #define AppSourcePath "dist\Buzz\*"
 #define OutputDir "dist"
 #define AppRegKey "Software\Buzz"
+#define AppVersion "1.0.0"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -29,7 +30,9 @@ SolidCompression=yes
 WizardStyle=modern
 
 [Languages]
-Name: "english"; MessagesFile: "compiler:Default.isl"
+Name: "portuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"; Default: yes
+; below is the original line
+;Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
