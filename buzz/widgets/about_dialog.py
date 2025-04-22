@@ -18,7 +18,7 @@ from PyQt6.QtWidgets import (
 from buzz.__version__ import VERSION
 from buzz.widgets.icon import BUZZ_ICON_PATH, BUZZ_LARGE_ICON_PATH
 from buzz.locale import _
-from buzz.settings.settings import APP_NAME
+from buzz.settings.settings import APP_NAME, APP_DISPLAY_NAME
 
 
 class AboutDialog(QDialog):
@@ -35,7 +35,7 @@ class AboutDialog(QDialog):
         super().__init__(parent)
 
         self.setWindowIcon(QIcon(BUZZ_ICON_PATH))
-        self.setWindowTitle(f'{_("About")} {APP_NAME}')
+        self.setWindowTitle(f'{_("About")} {APP_DISPLAY_NAME}')
 
         if network_access_manager is None:
             network_access_manager = QNetworkAccessManager()
@@ -59,7 +59,7 @@ class AboutDialog(QDialog):
             )
         )
 
-        buzz_label = QLabel(APP_NAME)
+        buzz_label = QLabel(APP_DISPLAY_NAME)
         buzz_label.setAlignment(
             Qt.AlignmentFlag(
                 Qt.AlignmentFlag.AlignVCenter | Qt.AlignmentFlag.AlignHCenter

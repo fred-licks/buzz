@@ -6,6 +6,7 @@ import uuid
 from PyQt6.QtCore import QSettings
 
 APP_NAME = "Buzz"
+APP_DISPLAY_NAME = "Buzz PCRS"
 
 
 class Settings:

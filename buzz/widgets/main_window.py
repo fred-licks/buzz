@@ -24,7 +24,7 @@ from buzz.db.entity.transcription import Transcription
 from buzz.db.service.transcription_service import TranscriptionService
 from buzz.file_transcriber_queue_worker import FileTranscriberQueueWorker
 from buzz.locale import _
-from buzz.settings.settings import APP_NAME, Settings
+from buzz.settings.settings import APP_NAME, APP_DISPLAY_NAME, Settings
 from buzz.settings.shortcuts import Shortcuts
 from buzz.store.keyring_store import set_password, Key
 from buzz.transcriber.transcriber import (
@@ -59,7 +59,7 @@ class MainWindow(QMainWindow):
     def __init__(self, transcription_service: TranscriptionService):
         super().__init__(flags=Qt.WindowType.Window)
 
-        self.setWindowTitle(APP_NAME)
+        self.setWindowTitle(APP_DISPLAY_NAME)
         self.setWindowIcon(QIcon(BUZZ_ICON_PATH))
         self.setBaseSize(1240, 600)
         self.resize(1240, 600)

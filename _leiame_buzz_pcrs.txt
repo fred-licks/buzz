@@ -14,8 +14,9 @@ cp -r .\dll_backup\ .\buzz\
 poetry build
 python -m buzz
 
+Para gerar distribuição (no Windows)
+make dist/Buzz 
 Isso criará os arquivos necessários na pasta dist/Buzz/
 
 Depois, compile o instalador com o Inno Setup:
-
 iscc installer.iss

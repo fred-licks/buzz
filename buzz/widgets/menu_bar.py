@@ -6,7 +6,7 @@ from PyQt6.QtGui import QAction, QKeySequence
 from PyQt6.QtWidgets import QMenuBar, QWidget
 
 from buzz.locale import _
-from buzz.settings.settings import APP_NAME
+from buzz.settings.settings import APP_NAME, APP_DISPLAY_NAME
 from buzz.settings.shortcut import Shortcut
 from buzz.settings.shortcuts import Shortcuts
 from buzz.widgets.about_dialog import AboutDialog
@@ -42,7 +42,7 @@ class MenuBar(QMenuBar):
         self.import_url_action.triggered.connect(self.import_url_action_triggered)
 
         about_label = _("About")
-        about_action = QAction(f'{about_label} {APP_NAME}', self)
+        about_action = QAction(f'{about_label} {APP_DISPLAY_NAME}', self)
         about_action.triggered.connect(self.on_about_action_triggered)
 
         self.preferences_action = QAction(_("Preferences..."), self)

@@ -5,7 +5,7 @@
 #define AppExeName "Buzz PCRS.exe"
 #define AppPublisher "Dinova/DTIP/PCRS"
 #define AppIconPath "assets\buzz_pcrs.ico"
-#define AppSourcePath "dist\Buzz\*"
+#define AppSourcePath "dist\Buzz PCRS\*"
 #define OutputDir "dist"
 #define AppRegKey "Software\Buzz"
 #define AppVersion "1.0.0"
@@ -30,7 +30,7 @@ SolidCompression=yes
 WizardStyle=modern
 
 [Languages]
-Name: "portuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"; Default: yes
+Name: "portuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
 ; below is the original line
 ;Name: "english"; MessagesFile: "compiler:Default.isl"
 
