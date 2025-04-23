@@ -1,12 +1,15 @@
-Instalação de dependências externas:
+WINDOWS
 
+Instalação de dependências externas
+https://github.com/PowerShell/PowerShell/releases/tag/v7.5.0
 choco install ffmpeg
-
+Baixe o Visual C++ Build Tools do link: https://visualstudio.microsoft.com/visual-cpp-build-tools/
 
 
 Antes de executar o Inno Setup, você precisa compilar o Buzz para criar os arquivos na pasta dist/Buzz/. Aqui está a sequência correta de passos:
 
 Primeiro, compile o aplicativo Buzz:
+poetry self add poetry-plugin-shell
 poetry shell
 make translation_mo
 poetry install
