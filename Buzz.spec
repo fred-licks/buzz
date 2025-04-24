@@ -110,7 +110,7 @@ app = BUNDLE(
     coll,
     name="Buzz.app",
     icon="./assets/buzz_pcrs.icns",
-    bundle_identifier="com.chidiwilliams.buzz",
+    bundle_identifier="br.gov.rs.pc.inova_dtip.buzzpcrs",
     version=VERSION,
     info_plist={
         "NSPrincipalClass": "NSApplication",
