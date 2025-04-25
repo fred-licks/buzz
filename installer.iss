@@ -38,9 +38,12 @@ Name: "portuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+Name: "installffmpeg"; Description: "Configurar FFmpeg (necessário para transcrição de áudio)"; GroupDescription: "Componentes adicionais:"; Flags: checkedonce
 
 [Files]
 Source: {#AppSourcePath}; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+; Adicionado para garantir que o FFmpeg esteja incluído corretamente
+Source: "ffmpeg\*"; DestDir: "{app}\ffmpeg"; Flags: ignoreversion recursesubdirs createallsubdirs; Tasks: installffmpeg
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

@@ -2,6 +2,7 @@
 import os.path
 import platform
 import shutil
+import importlib
 
 from PyInstaller.utils.hooks import collect_data_files, copy_metadata
 
@@ -22,6 +23,8 @@ datas += copy_metadata("tokenizers")
 datas += copy_metadata("huggingface-hub")
 datas += copy_metadata("safetensors")
 datas += copy_metadata("pyyaml")
+
+datas += collect_data_files("imageio_ffmpeg")
 
 # Allow transformers package to load __init__.py file dynamically:
 # https://github.com/chidiwilliams/buzz/issues/272
@@ -46,6 +49,10 @@ binaries = [
         "buzz/whisper.dll" if platform.system() == "Windows" else "buzz/libwhisper.*",
         ".",
     ),
+    # Usar o FFmpeg do imageio_ffmpeg
+    (os.path.join(os.path.dirname(importlib.import_module(
+        "imageio_ffmpeg").__file__), "binaries", "*"), "."),
+    # Backup para o caso de não conseguir usar o do imageio_ffmpeg
     (shutil.which("ffmpeg"), "."),
     (shutil.which("ffprobe"), "."),
 ]
