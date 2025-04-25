@@ -60,3 +60,49 @@ def load_audio(file: str, sr: int = SAMPLE_RATE):
         raise RuntimeError(f"FFMPEG Failed to load audio: {result.stderr.decode()}")
 
     return np.frombuffer(result.stdout, np.int16).flatten().astype(np.float32) / 32768.0
+
+# Versão aprimorada que usa o módulo ffmpeg_utils
+
+
+def load_audio_enhanced(file: str, sr: int = SAMPLE_RATE):
+    """
+    Versão aprimorada da função load_audio que usa nossa utilidade de FFmpeg.
+    Em caso de erro na implementação original, esta função será usada como fallback.
+    """
+    from buzz.ffmpeg_utils import run_ffmpeg_command, get_platform
+
+    cmd = [
+        "-nostdin",
+        "-threads", "0",
+        "-i", file,
+        "-f", "s16le",
+        "-ac", "1",
+        "-acodec", "pcm_s16le",
+        "-ar", str(sr),
+        "-loglevel", "panic",
+        "-"
+    ]
+
+    success, result = run_ffmpeg_command(cmd)
+
+    if not success:
+        logging.warning(f"FFMPEG audio load error: {result}")
+        raise RuntimeError(f"FFMPEG Failed to load audio: {result}")
+
+    return np.frombuffer(result, np.int16).flatten().astype(np.float32) / 32768.0
+
+# Sobrescreve a função original em caso de erro
+
+
+def load_audio_with_fallback(file: str, sr: int = SAMPLE_RATE):
+    """
+    Tenta usar a função original de load_audio, mas em caso de erro,
+    volta para a versão melhorada que usa ffmpeg_utils.
+    """
+    try:
+        # Tenta a função original primeiro
+        return load_audio(file, sr)
+    except Exception as e:
+        logging.warning(
+            f"Erro ao carregar áudio com a função original. Usando fallback: {e}")
+        return load_audio_enhanced(file, sr)

@@ -1,7 +1,5 @@
 import logging
 import os
-import sys
-import subprocess
 import shutil
 import tempfile
 from abc import abstractmethod
@@ -17,6 +15,9 @@ from buzz.transcriber.transcriber import (
     Segment,
     OutputFormat,
 )
+
+# Importar o novo módulo do diretório correto
+from buzz.ffmpeg_utils import run_ffmpeg_command, get_platform
 
 
 class FileTranscriber(QObject):
@@ -51,15 +52,16 @@ class FileTranscriber(QObject):
             ydl = YoutubeDL(options)
 
             try:
-                logging.debug(f"Downloading audio file from URL: {self.transcription_task.url}")
+                logging.debug(
+                    f"Downloading audio file from URL: {self.transcription_task.url}")
                 ydl.download([self.transcription_task.url])
             except Exception as exc:
                 logging.debug(f"Error downloading audio: {exc.msg}")
                 self.error.emit(exc.msg)
                 return
 
+            # Usar o novo módulo ffmpeg_utils para converter o áudio
             cmd = [
-                "ffmpeg",
                 "-nostdin",
                 "-threads", "0",
                 "-i", temp_output_path,
@@ -67,22 +69,21 @@ class FileTranscriber(QObject):
                 "-ar", str(SAMPLE_RATE),
                 "-acodec", "pcm_s16le",
                 "-loglevel", "panic",
-                wav_file]
+                wav_file
+            ]
 
-            if sys.platform == "win32":
-                si = subprocess.STARTUPINFO()
-                si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-                si.wShowWindow = subprocess.SW_HIDE
-                result = subprocess.run(cmd, capture_output=True, startupinfo=si)
-            else:
-                result = subprocess.run(cmd, capture_output=True)
+            success, error_msg = run_ffmpeg_command(cmd)
 
-            if len(result.stderr):
-                logging.warning(f"Error processing downloaded audio. Error: {result.stderr.decode()}")
-                raise Exception(f"Error processing downloaded audio: {result.stderr.decode()}")
+            if not success:
+                logging.warning(
+                    f"Error processing downloaded audio. Error: {error_msg}")
+                self.error.emit(
+                    f"Error processing downloaded audio: {error_msg}")
+                return
 
             self.transcription_task.file_path = wav_file
-            logging.debug(f"Downloaded audio to file: {self.transcription_task.file_path}")
+            logging.debug(
+                f"Downloaded audio to file: {self.transcription_task.file_path}")
 
         try:
             segments = self.transcribe()
@@ -123,7 +124,8 @@ class FileTranscriber(QObject):
 
     def on_download_progress(self, data: dict):
         if data["status"] == "downloading":
-            self.download_progress.emit(data["downloaded_bytes"] / data["total_bytes"])
+            self.download_progress.emit(
+                data["downloaded_bytes"] / data["total_bytes"])
 
     @abstractmethod
     def transcribe(self) -> List[Segment]:

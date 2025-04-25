@@ -101,6 +101,7 @@ nvidia-curand-cu12 = "10.3.5.147"
 nvidia-cusolver-cu12 = "11.6.1.9"
 nvidia-cusparse-cu12 = "12.3.1.170"
 nvidia-nvtx-cu12 = "12.4.127"
+imageio-ffmpeg = "^0.6.0"
 
 [tool.poetry.group.dev.dependencies]
 autopep8 = "^1.7.0"

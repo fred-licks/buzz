@@ -5,7 +5,8 @@ mac_app_path := ./dist/Buzz.app
 mac_zip_path := ./dist/Buzz-${version}-mac.zip
 mac_dmg_path := ./dist/Buzz-${version}-mac.dmg
 
-bundle_windows: dist/Buzz
+bundle_windows: dist/Buzz_PCRS
+	poetry run python ensure_ffmpeg.py	
 	iscc //DAppVersion=${version} installer.iss
 
 bundle_mac: dist/Buzz.app codesign_all_mac zip_mac notarize_zip staple_app_mac dmg_mac
@@ -53,8 +54,12 @@ test: buzz/whisper_cpp.py translation_mo
 benchmarks: buzz/whisper_cpp.py translation_mo
 	pytest -s -vv --benchmark-only --benchmark-json benchmarks.json
 
-dist/Buzz dist/Buzz.app: buzz/whisper_cpp.py translation_mo
+dist/Buzz_PCRS dist/Buzz.app: buzz/whisper_cpp.py translation_mo
 	pyinstaller --noconfirm Buzz.spec
+	# Renomear para incluir PCRS
+	if [ -d "dist/Buzz" ]; then \
+		mv dist/Buzz "dist/Buzz/_PCRS"; \
+	fi
 
 version:
 	poetry version ${version}
