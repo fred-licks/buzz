@@ -84,7 +84,7 @@ exe = EXE(
     options,
     icon="./assets/buzz_pcrs.ico",
     exclude_binaries=True,
-    name="Buzz_PCRS",
+    name="Buzz",
     debug=DEBUG,
     bootloader_ignore_signals=False,
     strip=False,
@@ -104,7 +104,7 @@ coll = COLLECT(
     strip=False,
     upx=False,
     upx_exclude=[],
-    name="Buzz_PCRS",
+    name="Buzz",
 )
 app = BUNDLE(
     coll,

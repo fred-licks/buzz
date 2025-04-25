@@ -143,7 +143,7 @@ def copy_ffmpeg_files():
         ffmpeg_dir = Path(ffmpeg_exe).parent
         
         # Diretório de destino na distribuição
-        dist_dir = Path("dist/Buzz_PCRS/ffmpeg")
+        dist_dir = Path("dist/Buzz/ffmpeg")
         dist_dir.mkdir(parents=True, exist_ok=True)
         
         # Copiar o executável principal
@@ -178,7 +178,7 @@ if __name__ == "__main__":
 def check_makefile():
     """Verifica o Makefile e fornece instruções"""
     print("\nVerifique seu Makefile e adicione a seguinte linha à regra bundle_windows:")
-    print("bundle_windows: dist/_PCRS")
+    print("bundle_windows: dist/Buzz")
     print("\tpoetry run python copy_ffmpeg.py")
     print("\tiscc //DAppVersion=${version} installer.iss")
 
