@@ -5,10 +5,15 @@ mac_app_path := ./dist/Buzz.app
 mac_zip_path := ./dist/Buzz-${version}-mac.zip
 mac_dmg_path := ./dist/Buzz-${version}-mac.dmg
 
+<<<<<<< Updated upstream
 prepare_ffmpeg:
 	python prepare_ffmpeg.py
 
 bundle_windows: dist/Buzz prepare_ffmpeg
+=======
+bundle_windows: dist/Buzz
+	poetry run python copy_ffmpeg.py
+>>>>>>> Stashed changes
 	poetry run python ensure_ffmpeg.py	
 	iscc //DAppVersion=${version} installer.iss
 	
