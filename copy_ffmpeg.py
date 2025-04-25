@@ -16,7 +16,7 @@ def copy_ffmpeg_files():
         ffmpeg_dir = Path(ffmpeg_exe).parent
         
         # Diret�rio de destino na distribui��o
-        dist_dir = Path("dist/Buzz/ffmpeg")
+        dist_dir = Path("dist/Buzz_PCRS/ffmpeg")
         dist_dir.mkdir(parents=True, exist_ok=True)
         
         # Copiar o execut�vel principal

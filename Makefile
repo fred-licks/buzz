@@ -5,6 +5,7 @@ mac_app_path := ./dist/Buzz.app
 mac_zip_path := ./dist/Buzz-${version}-mac.zip
 mac_dmg_path := ./dist/Buzz-${version}-mac.dmg
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 prepare_ffmpeg:
 	python prepare_ffmpeg.py
@@ -14,6 +15,9 @@ bundle_windows: dist/Buzz prepare_ffmpeg
 bundle_windows: dist/Buzz
 	poetry run python copy_ffmpeg.py
 >>>>>>> Stashed changes
+=======
+bundle_windows: dist/Buzz_PCRS
+>>>>>>> parent of b29bb3c (2)
 	poetry run python ensure_ffmpeg.py	
 	iscc //DAppVersion=${version} installer.iss
 	
@@ -63,8 +67,15 @@ test: buzz/whisper_cpp.py translation_mo
 benchmarks: buzz/whisper_cpp.py translation_mo
 	pytest -s -vv --benchmark-only --benchmark-json benchmarks.json
 
-dist/Buzz dist/Buzz.app: buzz/whisper_cpp.py translation_mo
+dist/Buzz_PCRS dist/Buzz.app: buzz/whisper_cpp.py translation_mo
 	pyinstaller --noconfirm Buzz.spec
+<<<<<<< HEAD
+=======
+	# Renomear para incluir PCRS
+	if [ -d "dist/Buzz" ]; then \
+		mv dist/Buzz "dist/Buzz/_PCRS"; \
+	fi
+>>>>>>> parent of b29bb3c (2)
 
 version:
 	poetry version ${version}

@@ -80,7 +80,7 @@ def download_ffmpeg():
 def ensure_ffmpeg_in_dist():
     """Garante que o FFmpeg esteja na pasta de distribuição"""
     system = get_platform()
-    dist_dir = Path("dist/Buzz/ffmpeg")
+    dist_dir = Path("dist/Buzz_PCRS/ffmpeg")
     dist_dir.mkdir(parents=True, exist_ok=True)
 
     # Tentar localizar o FFmpeg existente
