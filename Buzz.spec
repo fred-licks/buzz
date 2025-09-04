@@ -104,7 +104,7 @@ coll = COLLECT(
     strip=False,
     upx=False,
     upx_exclude=[],
-    name="Buzz PCRS",
+    name="Buzz",
 )
 app = BUNDLE(
     coll,
