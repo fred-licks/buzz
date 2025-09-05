@@ -1,9 +1,6 @@
-
 Criação do arquivo de tradução
 
-
 ## Preparo pré-compilação
-
 
 conda activate buzz
 
@@ -135,14 +132,7 @@ Se enfrentar problemas ao executar o programa no ambiente de desenvolvimento, fa
 
 ```
 pip uninstall torch torchaudio
-
-```
-
-```
 pip install torch==2.6.0+cu124 torchaudio==2.6.0+cu124 --index-url https://download.pytorch.org/whl/cu124
-```
-
-```
 pip install nvidia-cublas-cu12==12.4.5.8 nvidia-cuda-cupti-cu12==12.4.127 nvidia-cuda-nvrtc-cu12==12.4.127 nvidia-cuda-runtime-cu12==12.4.127 nvidia-cufft-cu12==11.2.1.3 nvidia-curand-cu12==10.3.5.147 nvidia-cusolver-cu12==11.6.1.9 nvidia-cusparse-cu12==12.3.1.170 nvidia-nvtx-cu12==12.4.127
 ```
 
@@ -152,24 +142,25 @@ Se ainda não funcionar, tente verificar se há erros relacionados ao FFmpeg na 
 set BUZZ_FORCE_CPU=true
 ```
 
-
 # Criação da versão para distribuição
-
 
 ## Windows
 
 ### Método adotado pelo Fred Licks (funciona):
 
-Se quiser que a compilação inclua janela para debug, execute:
+**# Para compilação com console de debug**
 
 ```
 $env:PYINSTALLER_DEBUG="1"
-```
-
-Depois para a compilação propriamente dita, execute:
+pyinstaller **--**noconfirm Buzz**.**spec
 
 ```
-pyinstaller --noconfirm --console Buzz.spec
+
+**# Para compilação sem console (produção)**
+
+```
+$env:PYINSTALLER_DEBUG=""
+pyinstaller **--noconfirm Buzz.**spec
 ```
 
 ### Método recomendado pelo autor do Buzz (não funciona):
@@ -180,7 +171,6 @@ Execute o comando:
 make dist/Buzz
 ```
 
-
 # Criação de um instalador para a versão de distribuição:
 
 Execute o comando:
@@ -188,7 +178,6 @@ Execute o comando:
 ```
 iscc installer.iss
 ```
-
 
 ## **Instalação do MSYS2**
 
